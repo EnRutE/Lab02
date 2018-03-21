@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Lab02</string>
+    <string name="correo">Correo Electrónico:</string>
+    <string name="registarse">Registrarse</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="repetircontrasena">Repetir Contraseña:</string>
+    <string name="reg">Registar</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="user">Usuario</string>
+    <string name="entrar">Entrar</string>
+    <string name="mensaje">Campo vacío</string>
+    <string name="mensaje2">Contraseñas diferentes</string>
+</resources>
