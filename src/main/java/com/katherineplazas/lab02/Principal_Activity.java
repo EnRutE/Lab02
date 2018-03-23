@@ -43,7 +43,7 @@ public class Principal_Activity extends AppCompatActivity {
            intent.putExtra("correo2",Correo);
             startActivityForResult(intent, 3);
 
-            Toast.makeText(this,Correo,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,Correo,Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.mCerrar_Sesion) {
 

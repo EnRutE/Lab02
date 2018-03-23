@@ -5,7 +5,7 @@
         android:id="@+id/mPerfil"
         />
     <item
-        android:title="Cerara sesión"
+        android:title="Cerrar Sesión"
         android:id="@+id/mCerrar_Sesion"
         />
 </menu>

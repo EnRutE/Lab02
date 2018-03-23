@@ -46,5 +46,4 @@ public class PerfilActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
