@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.katherineplazas.lab02.RegistroActivity">
+    tools:context="com.katherineplazas.lab02.RegistroConductorActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="10"
+            android:layout_weight="3"
             android:background="@color/beige"
             android:orientation="vertical">
 
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/registarac"
+                    android:text="@string/registroc"
                     android:textSize="30sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -67,7 +67,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/eMail"
+                    android:id="@+id/eMailConductor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textWebEmailAddress" />
@@ -88,7 +88,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/ePassword"
+                    android:id="@+id/ePasswordCond"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword" />
@@ -96,25 +96,25 @@
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/repetircontrasena"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/ePassword2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPassword" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/repetircontrasena"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/ePassword2Cond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -129,47 +129,52 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/eNombreAcud"
+                    android:id="@+id/eNombreCond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                     />
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cedula"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/eCedulaCond"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placa"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/ePlaca"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                      />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cedula"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/eCedulaAcu"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/datosEst"
-                    android:textColor="@color/black"
-
-                    android:layout_gravity="center"/>
-
 
 
             </LinearLayout>
@@ -182,97 +187,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nombre"
+                    android:text="@string/residencia"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/eNombreEst"
+                    android:id="@+id/eCiudad"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    />
+                    android:inputType="number" />
+
+
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/documento"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/eDocEst"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dirEst"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/eDirEst"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/colegio"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/eColegio"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Dircol"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/eDircol"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -284,8 +212,8 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="OnRegisterCLicked"
-                    android:text="@string/registarse" />
+                    android:onClick="OnRegistrarConductorClicked"
+                    android:text="@string/regCond" />
 
             </LinearLayout>
 
@@ -308,4 +236,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>

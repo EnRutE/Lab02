@@ -116,12 +116,30 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:onClick="OnRegisterCLicked"
+                    android:onClick="OnRegisterAcudienteCLicked"
                     android:text="@string/reg" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:onClick="OnRegisterConductorCLicked"
+                    android:text="@string/reg2" />
+
 
             </LinearLayout>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp" />
+
+
 
             <com.google.android.gms.common.SignInButton
                 android:layout_width="wrap_content"
