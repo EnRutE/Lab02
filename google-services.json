@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "462501438693",
+    "firebase_url": "https://lab02-375eb.firebaseio.com",
+    "project_id": "lab02-375eb",
+    "storage_bucket": "lab02-375eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462501438693:android:9d7140c78c122e7e",
+        "android_client_info": {
+          "package_name": "com.katherineplazas.lab02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462501438693-9kt4ck68dk6cd07g2fnu3mhqi0ss0blu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.katherineplazas.lab02",
+            "certificate_hash": "d3d9f2445d8df543efcb7a06de903366858e183f"
+          }
+        },
+        {
+          "client_id": "462501438693-vc8mmi21nci75gpl0qrpbglkv6n1pn5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDlVZDYesEIVE4Cb9Fe0q1qmFSjKxTw4M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462501438693-vc8mmi21nci75gpl0qrpbglkv6n1pn5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

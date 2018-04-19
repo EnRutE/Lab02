@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
                    // goPrincipalAcudienteActivity();
+                    goParqueaderosActivity();
                     Toast.makeText(MainActivity.this,"Usuario Logeado;"+firebaseUser.getEmail().toString(),Toast.LENGTH_LONG).show();
                 }else{
 
@@ -217,6 +218,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
     }
 
+    private void goParqueaderosActivity() {
+        Intent intent =new Intent(MainActivity.this,ParqueaderosActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 
     private void signInGoogle(GoogleSignInResult googleSignInResult){
