@@ -6,7 +6,7 @@ package com.katherineplazas.lab02.modelo;
 
 public class ParqueaderosModelo {
     String nombre,foto, edad,telefono;
-
+//hola
     public  ParqueaderosModelo(){
 
     }
