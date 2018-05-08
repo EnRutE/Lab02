@@ -17,13 +17,13 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        tUsuario = findViewById(R.id.tUsuario);
+        /*tUsuario = findViewById(R.id.tUsuario);
 
         Bundle extras = getIntent().getExtras();
         if(extras!=null) {
             Correo = extras.getString("correo2");
         }
-        tUsuario.setText(Correo);
+        tUsuario.setText(Correo);*/
     }
 
     @Override

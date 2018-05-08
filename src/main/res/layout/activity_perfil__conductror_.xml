@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo"
-    tools:context="com.katherineplazas.lab02.PerfilActivity">
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.katherineplazas.lab02.Perfil_Conductror_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"></LinearLayout>
             <TextView
+                android:id="@+id/tCorreoCond"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -50,67 +51,11 @@
                 android:layout_height="80dp"
                 app:civ_border_width="2dp"
 
-                android:src="@drawable/usuario"
+                android:src="@drawable/perfil_conductor"
                 app:civ_border_color="@color/white"/>
         </LinearLayout>
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:gravity="center"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:textSize="15dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/nombre"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="2dp"
-            android:textSize="15dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/cedula"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="15dp"
-            android:layout_margin="2dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/telefono"
-            android:gravity="center"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="30dp"
-            android:layout_margin="2dp"
-            android:textColor="@color/white"
-            android:text="@string/datosEst"
-            android:gravity="center"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,26 +66,51 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tNombreCond"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:gravity="center"
+            android:textSize="15dp"
             android:background="@color/silver"
             android:textColor="@color/black"
-            android:textSize="15dp"
             android:text="@string/nombre"
+            android:gravity="center"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tCedulaCond"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
             android:textSize="15dp"
             android:background="@color/silver"
             android:textColor="@color/black"
-            android:text="@string/documento"
+            android:text="@string/cedula"
             android:gravity="center"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tTelefonoCond"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="15dp"
+            android:layout_margin="2dp"
+            android:background="@color/silver"
+            android:textColor="@color/black"
+            android:text="@string/telefono"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tPlaca"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="15dp"
+            android:layout_margin="2dp"
+            android:background="@color/silver"
+            android:textColor="@color/black"
+            android:text="@string/placa"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tCiudadCond"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:textSize="15dp"
@@ -150,38 +120,17 @@
             android:text="@string/residencia"
             android:gravity="center"
             android:layout_weight="1"/>
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textSize="15dp"
-        android:layout_margin="2dp"
-        android:background="@color/silver"
-        android:textColor="@color/black"
-        android:text="@string/colegio"
-        android:gravity="center"
-        android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="15dp"
-            android:layout_margin="2dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/Dircol"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="15dp"
-            android:layout_margin="2dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/Rh"
-            android:gravity="center"
-            android:layout_weight="1"/>
     </LinearLayout>
 
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+    </LinearLayout>
 
 </LinearLayout>

@@ -59,9 +59,11 @@ public class Principal_Activity extends AppCompatActivity implements GoogleApiCl
 
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
-                    Toast.makeText(Principal_Activity.this,"Usuario Logeado;"+firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
+                    Log.d("Usuario_logueado",firebaseUser.getEmail());
+                    //Toast.makeText(Principal_Activity.this,"Usuario Logeado;"+firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(Principal_Activity.this,"Usuario No Logeado;"+firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
+                    Log.d("Usuario_logueado","NO");
+                    //Toast.makeText(Principal_Activity.this,"Usuario No Logeado;"+firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -106,7 +108,7 @@ public class Principal_Activity extends AppCompatActivity implements GoogleApiCl
                         finish();
 
                     } else {
-                        Toast.makeText(Principal_Activity.this, "Error cerrar sesion con google", Toast.LENGTH_SHORT).show();
+                        Log.d("Cerrar_sesion_google:", "ERROR");
 
                     }
                 }

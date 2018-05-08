@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context="com.katherineplazas.lab02.RegistroConductorActivity">
 
     <LinearLayout
@@ -24,8 +25,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/r_conductor"/>
         </LinearLayout>
 
         <LinearLayout
@@ -33,7 +39,6 @@
             android:layout_height="0dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="3"
-            android:background="@color/beige"
             android:orientation="vertical">
 
 
@@ -47,8 +52,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/registroc"
-                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:text="@string/registro_conductor"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -56,154 +62,179 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/correo"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
                 <EditText
+                    android:hint="@string/correo"
+                    android:textColorHint="@color/black"
                     android:id="@+id/eMailConductor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textWebEmailAddress" />
+                    android:inputType="textWebEmailAddress"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contrasena"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/ePasswordCond"
                     android:layout_width="match_parent"
+                    android:inputType="textPassword"
+                    android:hint="@string/contrasena"
+                    android:textColorHint="@color/black"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword" />
+                    android:textSize="15dp"
+                    />
 
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/repetircontrasena"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/ePassword2Cond"
                     android:layout_width="match_parent"
+                    android:hint="@string/repetircontrasena"
+                    android:textColorHint="@color/black"
+                    android:inputType="textPassword"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword" />
+                    android:textSize="15dp"
+                    />
 
             </LinearLayout>
             <LinearLayout
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nombre"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/eNombreCond"
                     android:layout_width="match_parent"
+                    android:hint="@string/nombre"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/black"
                     android:layout_height="match_parent"
-                     />
-            </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cedula"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/eCedulaCond"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="number" />
-
-
-
+                    android:textSize="15dp"
+                    />
             </LinearLayout>
             <LinearLayout
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/placa"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+
+
+                <EditText
+                    android:id="@+id/eCedulaCond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:hint="@string/cedula"
+                    android:textColorHint="@color/black"
+                    android:textSize="15dp"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_margin="2dp"
+                android:background="@color/silver"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
 
                 <EditText
                     android:id="@+id/ePlaca"
+                    android:hint="@string/placa"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                     />
+                    android:textSize="15dp"
+                    />
 
 
 
             </LinearLayout>
             <LinearLayout
+                android:background="@color/silver"
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/residencia"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
                 <EditText
                     android:id="@+id/eCiudad"
-                    android:layout_width="match_parent"
+                    android:hint="@string/residencia"
+                    android:textColorHint="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:inputType="number" />
+                    android:inputType="textPersonName"
+                    android:textSize="15dp"/>
+
+                <EditText
+                    android:id="@+id/eTelefono"
+                    android:hint="@string/telefono"
+                    android:textColorHint="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:textSize="15dp"/>
 
 
 
             </LinearLayout>
 
+            <LinearLayout
+
+                android:layout_margin="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@color/silver">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/Subir_Fotos"
+                    android:textSize="15dp"
+                    android:gravity="center_vertical"
+                    android:textColorHint="@color/black"
+                    />
+            </LinearLayout>
 
 
             <LinearLayout
+                android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -213,7 +244,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:onClick="OnRegistrarConductorClicked"
-                    android:text="@string/regCond" />
+                    android:text="@string/registarse"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:background="@color/darkorange"/>
 
             </LinearLayout>
 
@@ -222,7 +256,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.2"
             android:orientation="horizontal">
 
         </LinearLayout>

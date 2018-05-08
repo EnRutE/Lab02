@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context="com.katherineplazas.lab02.MainActivity">
 
     <LinearLayout
@@ -23,8 +24,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_margin="2dp"
+            android:layout_gravity="center"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"/>
 
         </LinearLayout>
 
@@ -32,8 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="3"
-            android:background="@color/beige"
+            android:layout_weight="5"
             android:orientation="vertical">
 
 
@@ -48,64 +60,63 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/login"
-                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
+                android:background="@color/silver"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/user"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/eUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textWebEmailAddress" />
+                    android:hint="@string/correo"
+                    android:inputType="textWebEmailAddress"
+                    android:textColorHint="@color/black"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
+                android:background="@color/silver"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contrasena"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/ePassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword" />
+                    android:hint="@string/contrasena"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/black"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
                     android:onClick="OnLogInClicked"
-                    android:text="@string/entrar" />
+                    android:text="@string/entrar"
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
@@ -115,37 +126,42 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:onClick="OnRegisterAcudienteCLicked"
-                    android:text="@string/reg" />
-                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/orange"
+                        android:onClick="OnRegisterAcudienteCLicked"
+                        android:text="@string/reg" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:onClick="OnRegisterConductorCLicked"
-                    android:text="@string/reg2" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/orange"
+
+                        android:onClick="OnRegisterConductorCLicked"
+                        android:text="@string/reg2" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
-
-
-
-            <com.google.android.gms.common.SignInButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSingInGogle"
-                android:layout_gravity="center_horizontal"></com.google.android.gms.common.SignInButton>
 
 
         </LinearLayout>
@@ -153,7 +169,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
         </LinearLayout>

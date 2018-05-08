@@ -54,16 +54,7 @@
                 android:text="@string/Telefono"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="@string/edad"
-                android:id="@+id/tEdad"
-                android:gravity="right"
 
-                />
         </LinearLayout>
     </LinearLayout>
   </LinearLayout>

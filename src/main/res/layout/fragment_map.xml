@@ -5,9 +5,13 @@
     tools:context="com.katherineplazas.lab02.MapFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<com.google.android.gms.map.MapView-->
+    <com.google.android.gms.maps.MapView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="380dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map">
+
+    </com.google.android.gms.maps.MapView>
 
 </FrameLayout>

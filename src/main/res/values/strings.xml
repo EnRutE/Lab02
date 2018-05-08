@@ -1,27 +1,28 @@
 <resources>
-    <string name="app_name">Lab02</string>
-    <string name="correo">Correo Electrónico:</string>
+    <string name="app_name">EnRutE</string>
+    <string name="correo">Correo Electrónico</string>
     <string name="registarse">Registrarse</string>
     <string name="contrasena">Contraseña</string>
-    <string name="repetircontrasena">Repetir Contraseña:</string>
+    <string name="repetircontrasena">Repetir Contraseña</string>
     <string name="reg">Soy Acudiente</string>
     <string name="reg2">Soy Conductor</string>
-    <string name="login">Iniciar Sesión</string>
+    <string name="login">INICIAR SESIÓN</string>
     <string name="user">Usuario</string>
     <string name="entrar">Entrar</string>
     <string name="mensaje">Campo vacío</string>
     <string name="mensaje2">Contraseñas diferentes</string>
-    <string name="nombre">Nombre:</string>
-    <string name="cedula">Cédula: </string>
-    <string name="placa">Placa:</string>
-    <string name="residencia">Ciudad de Residencia:</string>
+    <string name="nombre">Nombre</string>
+    <string name="cedula">Cédula </string>
+    <string name="placa">Placa</string>
+    <string name="residencia">Ciudad de Residencia</string>
     <string name="regCond">Registrar</string>
     <string name="registroc">Registro Conductor</string>
-    <string name="registarac">Registro Acudiente</string>
-    <string name="datosEst">--------Datos del Estudiante--------</string>
-    <string name="documento">Documento:</string>
-    <string name="colegio">Colegio:</string>
-    <string name="Dircol">Direccion Colegio:</string>
+    <string name="registarac">REGISTRO ACUDIENTE</string>
+    <string name="datosEst">DATOS DEL ESTUDIANTE</string>
+    <string name="documento">Documento</string>
+    <string name="documento_1">Documento</string>
+    <string name="colegio">Colegio</string>
+    <string name="Dircol">Direccion Colegio</string>
     <string name="dirEst">Direccion de Residencia</string>
     <string name="facebook_app_id">875951362587464</string>
     <string name="fb_login_protocol_scheme">fb875951362587464</string>
@@ -34,4 +35,28 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Subir_Fotos">Fotos documentos</string>
+    <string name="registro_conductor">REGISTRO CONDUCTOR</string>
+    <string name="Rh">RH</string>
+    <string name="title_activity_principal__conductor_">Principal_Conductor_Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="recoger">RECOGER</string>
+    <string name="dejar">DEJAR</string>
+    <string name="inicio">Inicio</string>
+    <string name="mi_perfil">Mi perfil</string>
+    <string name="mensaje_3">Mensaje</string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <string name="ejemplo_correo">correo.electronico@example.com</string>
+    <string name="telefono">Telefono</string>
+    <string name="notificaciones">NOTIFICAR IMPREVISTO</string>
+    <string name="asunto">Asunto</string>
+    <string name="redactar_msn">Redactar mensaje</string>
+    <string name="enviar">Enviar</string>
+    <string name="title_activity_principal__acudiente">Principal_AcudienteActivity</string>
+    <string name="infoCnductor">INFO. CONDUCTOR</string>
+    <string name="Maps">MAPA</string>
+    <string name="notificacion">NOTIFICACIONES</string>
+    <string name="cuerpo">Cuerpo</string>
 </resources>

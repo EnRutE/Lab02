@@ -1,4 +1,4 @@
-package com.katherineplazas.lab02;
+/*package com.katherineplazas.lab02;
 
 import android.content.Context;
 import android.content.Intent;
@@ -78,7 +78,7 @@ public class PruebaActivity extends AppCompatActivity {
         listUsuarios= new ArrayList<>();
         /*listAdapter=new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,
-                listNombres);*/
+                listNombres);
 
        // lListView.setAdapter(listAdapter);
         final UsuarioAdapter usuarioAdapter=new UsuarioAdapter(this,listUsuarios);
@@ -187,7 +187,7 @@ public class PruebaActivity extends AppCompatActivity {
         Usuarios usuarios=new Usuarios(firebaseUser.getUid(),
                 firebaseUser.getDisplayName(),
                 firebaseUser.getPhoneNumber(),
-                0);*///para verficar si un usuario ya esta registrado
+                0);//para verficar si un usuario ya esta registrado
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
 
@@ -230,3 +230,4 @@ public class PruebaActivity extends AppCompatActivity {
 
     }
 }
+*/
