@@ -4,6 +4,8 @@ package com.katherineplazas.lab02.Adapters;
  * Created by KATHE on 30/04/2018.
  */
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ public class MensajesAdapter extends  RecyclerView.Adapter<MensajesAdapter.Mensa
 
 
 
+
     public MensajesAdapter(ArrayList<Mensajes> mensajesList) {
 
         this.mensajesList = mensajesList;
@@ -40,18 +43,25 @@ public class MensajesAdapter extends  RecyclerView.Adapter<MensajesAdapter.Mensa
     }
 
     @Override
-    public MensajesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MensajesViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 
-        View itemview = LayoutInflater.from(parent.getContext()).inflate(resource,parent,false);
+        final View itemview = LayoutInflater.from(parent.getContext()).inflate(resource,parent,false);
 
         itemview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity,"Abre actividad co detalle ",Toast.LENGTH_SHORT).show();
+               AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle("Mensaje");
+                builder.setMessage(mensajesList.get(parent.indexOfChild(itemview)).getCuerpo());
+                builder.setNegativeButton("Aceptar",null);
+                Dialog dialog = builder.create();
+                dialog.show();
             }
         });
         return new MensajesViewHolder(itemview);
     }
+
+
 
 
     @Override
@@ -70,23 +80,22 @@ public class MensajesAdapter extends  RecyclerView.Adapter<MensajesAdapter.Mensa
 
 
     public class MensajesViewHolder extends RecyclerView.ViewHolder{
-        private TextView tAsunto,tCuerpo;
+        private TextView tAsunto;
         private CircleImageView ifoto;
+        private TextView tFecha;
 
         public MensajesViewHolder(View itemView) {
             super(itemView);
             tAsunto=itemView.findViewById(R.id.tNombre);
-            tCuerpo=itemView.findViewById(R.id.tTelefono);
             ifoto=itemView.findViewById(R.id.iFoto);
-
+            tFecha = itemView.findViewById(R.id.tTelefono);
 
         }
         public  void bindMensajes(Mensajes mensajes, Activity activity){
 
            tAsunto.setText(mensajes.getAsunto());
-           tCuerpo.setText(mensajes.getCuerpo());
-
            Picasso.get().load(mensajes.getFoto()).into(ifoto);
+           tFecha.setText(mensajes.getFecha());
 
         }
     }

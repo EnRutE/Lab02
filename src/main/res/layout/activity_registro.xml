@@ -48,6 +48,8 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -80,10 +82,10 @@
                     android:textColorHint="@color/black"
                     android:textSize="15dp"
 
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:inputType="textPassword" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -99,11 +101,13 @@
                     android:id="@+id/ePassword2"
                     android:textColorHint="@color/black"
                     android:textSize="15dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:inputType="textPassword" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -213,27 +217,7 @@
                     />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/silver"
-                android:layout_margin="2dp"
-                android:orientation="horizontal">
 
-
-
-                <EditText
-                    android:id="@+id/eDirEst"
-                    android:textColorHint="@color/black"
-                    android:textSize="15dp"
-                    android:hint="@string/dirEst"
-                    android:inputType="textPersonName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -254,26 +238,7 @@
                     />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/silver"
-                android:layout_margin="2dp"
-                android:orientation="horizontal">
 
-
-                <EditText
-                    android:id="@+id/eDircol"
-                    android:hint="@string/Dircol"
-                    android:textColorHint="@color/black"
-                    android:textSize="15dp"
-                    android:inputType="textPersonName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -288,7 +253,8 @@
                     android:textColorHint="@color/black"
                     android:textSize="15dp"
                     android:inputType="textPersonName"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     />
 

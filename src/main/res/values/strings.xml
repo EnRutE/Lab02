@@ -59,4 +59,13 @@
     <string name="Maps">MAPA</string>
     <string name="notificacion">NOTIFICACIONES</string>
     <string name="cuerpo">Cuerpo</string>
+    <string name="Codigo">Código de barras</string>
+    <string name="Modificar">Modificar codigo</string>
+    <string name="irmapa">Ir a mapa</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="selcasa">Busca tu casa</string>
+    <string name="Finalizar">FINALIZAR REGISTRO</string>
+    <string name="iniciar_ruta">Iniciar Ruta</string>
+    <string name="finalizar_ruta">Finalizar Ruta</string>
+    <string name="ir_Runt">ir Runt</string>
 </resources>

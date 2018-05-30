@@ -140,16 +140,7 @@
             android:text="@string/documento"
             android:gravity="center"
             android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="15dp"
-            android:layout_margin="2dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/residencia"
-            android:gravity="center"
-            android:layout_weight="1"/>
+
         <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -160,16 +151,7 @@
         android:text="@string/colegio"
         android:gravity="center"
         android:layout_weight="1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="15dp"
-            android:layout_margin="2dp"
-            android:background="@color/silver"
-            android:textColor="@color/black"
-            android:text="@string/Dircol"
-            android:gravity="center"
-            android:layout_weight="1"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"

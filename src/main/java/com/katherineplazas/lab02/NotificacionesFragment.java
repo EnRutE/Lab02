@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +22,11 @@ import com.katherineplazas.lab02.Adapters.MensajesAdapter;
 
 import com.katherineplazas.lab02.modelo.Mensajes;
 import com.katherineplazas.lab02.modelo.ParqueaderosModelo;
+import com.katherineplazas.lab02.modelo.Usuarios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -34,6 +40,7 @@ public class NotificacionesFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
 
     public NotificacionesFragment() {
@@ -55,17 +62,67 @@ public class NotificacionesFragment extends Fragment {
                 getActivity());
         recyclerView.setAdapter(adapterMensajes);
 
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
+
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        leer_base_de_datos_Acudiente();
+        return view;
+    }
+
+    private void leer_base_de_datos_Acudiente() {
+
+        databaseReference.child("acudientes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+
+                if(dataSnapshot.exists()){
+
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
+                        if(usuarios.getCorreo().equals(firebaseAuth.getCurrentUser().getEmail())){
+                         Log.d("usuario_conductor",usuarios.getConductor());
+                           filtrar_mensajes(usuarios.getConductor());
+                            break;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+    }
+
+    private void filtrar_mensajes(final String conductor) {
+        final Date date = Calendar.getInstance().getTime();
 
         databaseReference.child("mensajes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String fecha_actual = String.valueOf(date.getDate());
+                if(date.getDate()<10){
+                    fecha_actual = "0"+fecha_actual+"/";
+                }else {
+                    fecha_actual = fecha_actual+"/";
+                }
+                if (date.getMonth()<10){
+                    fecha_actual = fecha_actual+"0"+String.valueOf(date.getMonth()+1);
+                }else {
+                    fecha_actual = fecha_actual+String.valueOf(date.getMonth()+1);
+                }
                 mensajesList.clear();
                 if(dataSnapshot.exists()){
                     for ( DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Mensajes mensajes=snapshot.getValue(Mensajes.class);
-                        mensajesList.add(mensajes);
+                        if(mensajes.getIdconductor().equals(conductor)){
+                            String fecha= mensajes.getFecha();
+
+                            if(fecha.substring(0,5).equals(fecha_actual)){
+                                mensajesList.add(mensajes);
+                            }
+                        }
+
                     }
                     adapterMensajes.notifyDataSetChanged();
                 }
@@ -76,7 +133,7 @@ public class NotificacionesFragment extends Fragment {
 
             }
         });
-        return view;
     }
+
 
 }

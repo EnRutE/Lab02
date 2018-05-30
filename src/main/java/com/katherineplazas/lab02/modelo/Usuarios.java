@@ -28,7 +28,9 @@ public class Usuarios {
         this.conductor = conductor;
         this.foto_estudiante = foto_estudiante;
         this.foto_acudiente = foto_acudiente;
+
     }
+
 
     public String getFoto_estudiante() {
         return foto_estudiante;

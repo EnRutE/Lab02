@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="30dp"
+        android:layout_margin="25dp"
         android:orientation="vertical"
         android:layout_weight="1">
 
@@ -47,17 +47,11 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/correo"/>
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
                 android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/tCorreoCond"/>
+
 
         </LinearLayout>
 
@@ -68,13 +62,7 @@
             android:layout_margin="2dp"
             android:background="@color/silver"
             android:orientation="horizontal">
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/nombre"/>
+
             <TextView
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -92,13 +80,7 @@
             android:layout_margin="2dp"
             android:background="@color/silver"
             android:orientation="horizontal">
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/cedula"/>
+
             <TextView
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -116,14 +98,7 @@
             android:layout_margin="2dp"
             android:background="@color/silver"
             android:orientation="horizontal">
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/residencia"
-                />
+
             <TextView
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -141,13 +116,7 @@
             android:layout_margin="2dp"
             android:background="@color/silver"
             android:orientation="horizontal">
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/telefono"/>
+
             <TextView
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -165,13 +134,7 @@
                 android:layout_margin="2dp"
                 android:background="@color/silver"
                 android:orientation="horizontal">
-                <TextView
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/placa"/>
+
                 <TextView
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -182,10 +145,31 @@
                     android:id="@+id/tPlaca"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.5"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_margin="2dp"
+                    android:text="@string/ir_Runt"
+                    android:background="@color/darkorange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bIrRunt"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
                 android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 

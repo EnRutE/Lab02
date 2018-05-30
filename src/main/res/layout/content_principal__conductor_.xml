@@ -17,6 +17,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
+            android:id="@+id/iEscanear"
+            android:onClick="Escanear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/codigo_barras"/>
@@ -40,6 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <EditText
+                android:id="@+id/eDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/documento_1"
@@ -63,6 +66,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tRecoger"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/recoger"
@@ -84,6 +88,8 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iRecoegerColegio"
+                android:onClick="OnClickRecogerColegio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/colegio" />
@@ -96,9 +102,11 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/iRecoegerCasa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/casa"/>
+                android:src="@drawable/casa"
+                android:onClick="OnClickRecogercasa"/>
 
         </LinearLayout>
 
@@ -113,6 +121,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tDejar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/dejar"
@@ -134,9 +143,11 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iDejarColegio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/colegio"/>
+                android:src="@drawable/colegio"
+                android:onClick="OnClickDejarColegio"/>
 
         </LinearLayout>
 
@@ -146,9 +157,11 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/iDejarCasa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/casa"/>
+                android:src="@drawable/casa"
+                android:onClick="OnClickDejarCasa"/>
 
         </LinearLayout>
 
@@ -160,7 +173,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
 
 

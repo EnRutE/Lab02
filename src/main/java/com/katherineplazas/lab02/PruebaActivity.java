@@ -181,7 +181,7 @@ public class PruebaActivity extends AppCompatActivity {
     public void OnGuardarClicked(View view) {
        // cont=0;
        // Usuarios usuarios=new Usuarios("user"+cont) forma 1
-      /*  FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+      /*FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
         FirebaseUser firebaseUser =firebaseAuth.getCurrentUser();
 
         Usuarios usuarios=new Usuarios(firebaseUser.getUid(),

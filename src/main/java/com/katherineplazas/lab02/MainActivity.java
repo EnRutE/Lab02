@@ -1,5 +1,6 @@
 package com.katherineplazas.lab02;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -72,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
     private void inicializar() {
         firebaseAuth = FirebaseAuth.getInstance();
-        Log.d("jjjjjjjj",":");
         FlagAcudiente=false;
         FlagConductor=false;
+        final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
         //para escuchar si alguien esta logeado
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -82,42 +83,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
+                    dialog.setMessage("Cargando usuario");
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.show();
                     buscar_perfil(firebaseAuth.getCurrentUser().getEmail());
-
-                    Log.d("jjjjjjjj0",firebaseUser.getEmail());
                 }else{
                 }
             }
         };
-
-
-
-
-
     }
-
-
-
-
 
     private void buscar_perfil(final String correo){
 
-        databaseReference.child("conductores").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("conductores").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
-                Log.d("jjjjjjjj1:",correo);
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-
                         Conductores conductores = snapshot.getValue(Conductores.class);
-                        Log.d("jjjjjjjj2:",conductores.getEcorreo());
                        if(conductores.getEcorreo().equals(correo)&& !FlagConductor){
-                           Log.d("jjjjjjjj3:",conductores.getEcorreo());
                            FlagConductor=true;
-                          goPrincipalConductorActivity();
+                           goPrincipalConductorActivity();
+                           break;
                        }
                     }
-
                 }
             }
             @Override
@@ -127,18 +116,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         });
 
-        databaseReference.child("acudientes").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("acudientes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
 
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Usuarios usuarios = snapshot.getValue(Usuarios.class);
-                        Log.d("jjjjjjjj4:",usuarios.getCorreo());
                         if(usuarios.getCorreo().equals(correo)&&!FlagAcudiente){
                             FlagAcudiente=true;
-                            Log.d("jjjjjjjj5:",usuarios.getCorreo());
                             goPrincipalAcudienteActivity();
+                            break;
                         }
                     }
 
@@ -154,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
     private void goPrincipalAcudienteActivity() {
         //crearcuenta();
+
         Intent intent =new Intent(MainActivity.this,Principal_AcudienteActivity.class);
         startActivity(intent);
         finish();
@@ -179,18 +168,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivityForResult(intent,123);
     }
 
-
-
-
-
     private void goPrincipalConductorActivity() {
-
+        Log.d("Entro","ok");
         Intent intent =new Intent(MainActivity.this,Principal_Conductor_Activity.class);
         startActivity(intent);
         finish();
     }
-
-
 
     public void OnLogInClicked(View view) {
 
@@ -199,10 +182,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }else if(ePassword.getText().toString().trim().equalsIgnoreCase("")){
             ePassword.setError("Campo vacío");
         }else{
-
             iniciarSesionFirebase(eUser.getText().toString(),ePassword.getText().toString());
-
-
         }
     }
 

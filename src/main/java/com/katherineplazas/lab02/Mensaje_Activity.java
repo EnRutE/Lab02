@@ -11,15 +11,25 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.katherineplazas.lab02.modelo.Conductores;
 import com.katherineplazas.lab02.modelo.Mensajes;
+
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Mensaje_Activity extends AppCompatActivity {
 
     EditText eAsunto, eMensaje;
     private DatabaseReference databaseReference;
+    private Calendar calendar;
+    private String fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,8 @@ public class Mensaje_Activity extends AppCompatActivity {
 
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+
     }
 
     @Override
@@ -58,21 +70,64 @@ public class Mensaje_Activity extends AppCompatActivity {
 
     private void crear_base_de_datos_mensaje() {
 
-        Mensajes mensajes = new Mensajes(databaseReference.push().getKey(),
-                eAsunto.getText().toString(),
-                eMensaje.getText().toString(),
-                "Id_Conductor",
-                "https://firebasestorage.googleapis.com/v0/b/lab02-375eb.appspot.com/o/Parqueaderos%2Ffamilia_2.png?alt=media&token=5e85d8fb-640e-4629-adf6-3873adc5dda6");
+        Date date = Calendar.getInstance().getTime();
+        FirebaseAuth firebaseAuth;
+        firebaseAuth = FirebaseAuth.getInstance();
+        fecha = String.valueOf(date.getDate());
+        if(date.getDate()<10){
+            fecha = "0"+fecha+"/";
+        }else {
+            fecha = fecha+"/";
+        }
+        if (date.getMonth()<10){
+            fecha = fecha+"0"+String.valueOf(date.getMonth()+1);
+        }else {
+            fecha = fecha+String.valueOf(date.getMonth()+1);
+        }
 
-        databaseReference.child("mensajes").child(mensajes.getId()).setValue(mensajes).addOnCompleteListener(new OnCompleteListener<Void>() {
+        leer_base_de_datos_Conductor(firebaseAuth.getCurrentUser().getEmail());
+
+
+
+    }
+
+    private void leer_base_de_datos_Conductor(final String correo) {
+
+        databaseReference.child("conductores").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Log.d("Base_Datos_mensajes","OK");
+            public void onDataChange(DataSnapshot dataSnapshot){
+                Date date = Calendar.getInstance().getTime();
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Conductores conductores = snapshot.getValue(Conductores.class);
+                        System.out.println(conductores);
+                        if(conductores.getEcorreo().equals(correo)){
+                            Mensajes mensajes = new Mensajes(databaseReference.push().getKey(),
+                                    eAsunto.getText().toString(),
+                                    eMensaje.getText().toString(),
+                                    correo,
+                                    conductores.getFoto_cond(),
+                                    fecha+" | "+String.valueOf(date.getHours())+":"+String.valueOf(date.getMinutes()));
+
+                            databaseReference.child("mensajes").child(mensajes.getId()).setValue(mensajes).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Log.d("Base_Datos_mensajes","OK");
+                                    }
+                                    else{
+                                        Log.d("Base_Datos_mensajes","ERROR");
+                                    }
+                                }
+                            });
+                            break;
+                        }
+                    }
+
                 }
-                else{
-                    Log.d("Base_Datos_mensajes","ERROR");
-                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
             }
         });
     }

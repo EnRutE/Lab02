@@ -10,11 +10,11 @@
                     
                     <item
                         android:id="@+id/iConductor_Miperfil"
-                        android:icon="@drawable/ic_menu_gallery"
-                        android:title="@string/mi_perfil" />
+                        android:icon="@drawable/icon_perfil"
+                        android:title="@string/mi_perfil"/>
                     <item
                         android:id="@+id/iConductor_Mensaje"
-                        android:icon="@drawable/ic_menu_share"
+                        android:icon="@drawable/icon_mensaje"
                         android:title="@string/mensaje_3" />
                 </group>
             </menu>
@@ -22,7 +22,7 @@
 
         <item
             android:id="@+id/iConductor_Cerrarsesion"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/icon_cerrar"
             android:title="@string/cerrar_sesion" />
 
     </group>

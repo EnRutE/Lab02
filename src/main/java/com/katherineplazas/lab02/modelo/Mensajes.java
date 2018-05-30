@@ -5,7 +5,7 @@ package com.katherineplazas.lab02.modelo;
  */
 
 public class Mensajes {
-    private String asunto, cuerpo, id, idconductor,foto;
+    private String asunto, cuerpo, id, idconductor,foto,fecha;
 
     public Mensajes() {
     }
@@ -18,12 +18,21 @@ public class Mensajes {
         this.foto = foto;
     }
 
-    public Mensajes(String id, String asunto, String cuerpo, String idconductor, String foto) {
+    public Mensajes(String id, String asunto, String cuerpo, String idconductor, String foto,String fecha) {
         this.asunto = asunto;
         this.cuerpo = cuerpo;
         this.id = id;
         this.idconductor = idconductor;
         this.foto = foto;
+        this.fecha = fecha;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getAsunto() {

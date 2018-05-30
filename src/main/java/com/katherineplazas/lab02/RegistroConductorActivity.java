@@ -1,15 +1,22 @@
 package com.katherineplazas.lab02;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,15 +26,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.katherineplazas.lab02.modelo.Conductores;
 import com.katherineplazas.lab02.modelo.Usuarios;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 public class RegistroConductorActivity extends AppCompatActivity {
 
-    EditText eCorreo,eContrasena,eContrasena2, ecedula,eplaca,eciudad,eTelefono,eNombreCond;
+    private EditText eCorreo,eContrasena,eContrasena2, ecedula,eplaca,eciudad,eTelefono,eNombreCond;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +59,11 @@ public class RegistroConductorActivity extends AppCompatActivity {
         eplaca=findViewById(R.id.ePlaca);
         eTelefono = findViewById(R.id.eTelefono);
 
+
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         inicializar();
+
     }
 
     private void inicializar() {
@@ -141,8 +159,8 @@ public class RegistroConductorActivity extends AppCompatActivity {
                 eTelefono.getText().toString(),
                 "000",
                 "000",
-                "foto_conductor",
-                "foto_documentos");
+                "https://firebasestorage.googleapis.com/v0/b/lab02-375eb.appspot.com/o/usuariosFotos%2Fperfil_conductor.png?alt=media&token=da6efefe-d5f6-424a-9865-0411c8608f3f",
+                "0");
 
         databaseReference.child("conductores").child(conductores.getId()).setValue(conductores).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -157,7 +175,7 @@ public class RegistroConductorActivity extends AppCompatActivity {
         });
     }
 
-    private void crearCuentaFirebase(String correo,String contrasena) {
+    private void crearCuentaFirebase(String correo, String contrasena) {
 
         firebaseAuth.createUserWithEmailAndPassword(correo,contrasena)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

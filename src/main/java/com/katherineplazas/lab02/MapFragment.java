@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -14,10 +15,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,13 +32,28 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.katherineplazas.lab02.modelo.Conductores;
 import com.katherineplazas.lab02.modelo.HttpDataHandler;
+import com.katherineplazas.lab02.modelo.Usuarios;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Protocol;
+
+
 
 
 /**
@@ -48,6 +67,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
     LocationManager locationManager;
 
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+    private String latitud_actual,latitud_siguiente,longitud_actual,longitud_siguiente;
+    private int flag_posicion = 0;
+    private TextView tVelocidad;
+    static LatLng punto_actual;
+    static LatLng punto_siguiente;
+
     public MapFragment() {
         // Required empty public constructor
     }
@@ -60,11 +87,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         mapView = view.findViewById(R.id.map);
-
         mapView.onCreate(savedInstanceState);
-
         mapView.getMapAsync(this);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+
+
+        tVelocidad = view.findViewById(R.id.tVelocidad);
 
         //locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
        /* GoogleApiClient googleApiClient = new GoogleApiClient.Builder(getActivity())
@@ -80,19 +110,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        LatLng udea = new LatLng(6.266953, -75.569111); //Página latlong
-        mMap.addMarker(new MarkerOptions().
-                position(udea).
-                title("Universidad de Antioquia").
-                snippet("Alma Mater").
-                icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher))); //Personalizar puntero
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(udea, 17));
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -109,9 +126,181 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         //mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
         //mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE); //solo imagen satelital
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(6.27,-75.56), 13));
+
+
+
+        //Para capturar correo del conductor y el estado
+        buscar_correo_conductor(firebaseAuth.getCurrentUser().getEmail());
+
+
+
+
+        /*
+        LatLng punto_actual = new LatLng(Double.valueOf(latitud_actual),Double.valueOf(longitud_actual));
+        LatLng punto_siguinte = new LatLng(Double.valueOf(latitud_siguiente),Double.valueOf(longitud_sigueinte));
+
+        if(estado == "bus"){
+             mMap.addPolyline(new PolylineOptions().
+                    add(punto_actual,punto_siguinte).width(3).color(Color.BLUE));
+        }*/
 
     }
+
+    private void buscar_correo_conductor(final String correo) {
+        databaseReference.child("acudientes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
+                        if(usuarios.getCorreo().equals(correo)){
+                            if(usuarios.getEstado().equals("bus")){
+                                //captura posicion actual y siguiente y traza linea en el mapa
+                                leer_ubicacion_conductor(usuarios.getConductor());
+                                String Dircol=usuarios.getDireccioncolegio();
+                                String DirCasa=usuarios.getDireccioncasa();
+                                Log.d("Dir colegio lat",Dircol.substring(0,Dircol.indexOf(',')+1));
+                                Log.d("Dir colegio",Dircol);
+
+                                LatLng Direccioncol=new LatLng(Double.valueOf( Dircol.substring(0,Dircol.indexOf(','))),Double.valueOf( Dircol.substring(Dircol.indexOf(',')+1,Dircol.length())));
+                                LatLng Direccioncasa=new LatLng(Double.valueOf( DirCasa.substring(0,DirCasa.indexOf(','))),Double.valueOf( DirCasa.substring(DirCasa.indexOf(',')+1,DirCasa.length())));
+                                mMap.addMarker(new MarkerOptions().
+                                        position(Direccioncasa).
+                                        title("Casa").
+                                        icon(BitmapDescriptorFactory.fromResource(R.drawable.markercasa))); //Personalizar puntero
+                                mMap.addMarker(new MarkerOptions().
+                                        position(Direccioncol).
+                                        title("Colegio").
+                                        icon(BitmapDescriptorFactory.fromResource(R.drawable.markercolegio))); //Personalizar puntero
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Direccioncol, 15));
+
+
+                            }else {
+
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+    }
+
+    private void leer_ubicacion_conductor(final String correo) {
+
+        databaseReference.child("conductores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Conductores conductores = snapshot.getValue(Conductores.class);
+                        System.out.println(conductores);
+                        if(conductores.getEcorreo().equals(correo)){
+                            double velociadad = Double.valueOf(conductores.getVelocidad());
+                            velociadad = velociadad*3.6;
+                            tVelocidad.setText(" Velocidad: "+String.format("%.1f",velociadad)+" Km/h");
+                            switch (flag_posicion){
+                                case 0:
+                                    latitud_actual = conductores.getLatitud_cond();
+                                    longitud_actual = conductores.getLongitud_cond();
+                                    punto_actual = new LatLng(Double.valueOf(latitud_actual),Double.valueOf(longitud_actual));
+                                    flag_posicion = 1;
+                                    break;
+                                case 1:
+                                    latitud_siguiente = conductores.getLatitud_cond();
+                                    longitud_siguiente = conductores.getLongitud_cond();
+                                    punto_siguiente = new LatLng(Double.valueOf(latitud_siguiente),Double.valueOf(longitud_siguiente));
+                                    flag_posicion = 0;
+                                    break;
+                            }
+                            if(punto_siguiente!=null&& flag_posicion==1){
+                                Log.d("linea","ok");
+                                mMap.addPolyline(new PolylineOptions().
+                                        add(punto_actual,punto_siguiente).width(5).color(Color.BLUE));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(punto_siguiente));
+                            }
+                            break;
+                        }
+                    }
+
+
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+    }
+
+
+/*    private void leer_base_de_datos_Acudientes(final String correo) {
+        databaseReference.child("acudientes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                if(dataSnapshot.exists()){
+                    Log.d("entro","ok");
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
+                        if(usuarios.getCorreo().equals(correo)){
+                            correo_conductor = usuarios.getConductor();
+                            estado = usuarios.getEstado();
+                            Log.d("Correo_conductor",correo_conductor);
+                            break;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+    }
+
+
+
+
+    private void leer_base_de_datos_Conductor(final String correo) {
+        databaseReference.child("conductores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Conductores conductores = snapshot.getValue(Conductores.class);
+                        System.out.println(conductores);
+                        if(conductores.getEcorreo().equals(correo)){
+                            velociadad = conductores.getVelocidad();
+                            switch (flag_posicion){
+                                case 0:
+                                    latitud_actual = conductores.getLatitud_cond();
+                                    longitud_actual = conductores.getLongitud_cond();
+                                    flag_posicion = 1;
+                                    break;
+                                case 1:
+                                    latitud_siguiente = conductores.getLatitud_cond();
+                                    longitud_sigueinte = conductores.getLongitud_cond();
+                                    flag_posicion = 0;
+                                    break;
+                            }
+                            Log.d("punto actual",latitud_actual+longitud_actual);
+                            Log.d("punto siguiente",latitud_siguiente+longitud_sigueinte);
+                            break;
+                        }
+                    }
+
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+    }*/
 
   //  public void tutorial(){
     //    new GetCordinates().execute("Calle+34ee#89-83");

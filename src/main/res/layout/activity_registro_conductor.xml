@@ -214,26 +214,6 @@
             </LinearLayout>
 
             <LinearLayout
-
-                android:layout_margin="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="@color/silver">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/Subir_Fotos"
-                    android:textSize="15dp"
-                    android:gravity="center_vertical"
-                    android:textColorHint="@color/black"
-                    />
-            </LinearLayout>
-
-
-            <LinearLayout
                 android:layout_margin="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
